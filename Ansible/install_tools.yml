@@ -1,0 +1,39 @@
+---
+- name: "Install Jenkins, Java and Python on EC2 Instance"
+  hosts: projectserver
+  become: yes
+  tasks: 
+    - name: Add Jenkins apt repository key
+      apt_key:
+        url: https://pkg.jenkins.io/debian/jenkins.io.key
+        state: present
+
+    - name: Add Jenkins apt repository on Server
+      apt_repository:
+        repo: "deb http://pkg.jenkins.io/debian-stable binary/"
+        state: present
+
+    - name: Update apt package index after adding Jenkins repository
+      apt:
+        update_cache: yes
+
+    - name: Install Jenkins on Server
+      apt:
+        name: jenkins
+        state: present
+
+    - name: Install Java on Server
+      apt:
+        name: openjdk-11-jdk
+        state: present
+
+    - name: Install Python on Server
+      apt:
+        name: python3
+        state: present
+
+    - name: Started and enable jenkins Service
+      systemd:
+        name: jenkins
+        enabled: yes
+        state: started
