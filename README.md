@@ -4,7 +4,7 @@
 This repository contains Terraform and Ansible scripts to automate the process of creating and configuring an AWS EC2 instance. Terraform is used for provisioning the infrastructure (EC2 Instance) in AWS, and Ansible is used for configuring the instance and perform installation of Python, Java and Jenkins.
 
 <h3>Prerequisites</h3>
-<b>Note:</b> Make sure your machine contains below prerequisites for executing these scripts.
+<b>Note:</b> Make sure your machine contains below prerequisites installed for executing these scripts.
 
 1. [Terraform](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
 2. [Ansible](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
@@ -13,7 +13,7 @@ This repository contains Terraform and Ansible scripts to automate the process o
 
 <h3>Setup</h3>
 
-1. Clone the respository on to your local machine and start with below steps.
+1. Clone the repository  on to your local machine and start with below steps.
 
     ```
     git clone https://github.com/sanjaythrinad/Build_AWS_EC2_Terraform.git
@@ -52,14 +52,14 @@ This repository contains Terraform and Ansible scripts to automate the process o
     echo $TF_VAR_public_key
     ```
 
-4. Switch into Terraform Directory present in the cloned repository
+4. Switch into Terraform Directory present in the cloned repository.
 
     ```
     cd Terraform/
     ```
 
 
-5. Run below commands to initialize the aws provider, plan and apply the plan
+5. Run below commands to initialize the aws provider, plan and apply the plan.
     
     ```
     terraform init
@@ -89,7 +89,7 @@ This repository contains Terraform and Ansible scripts to automate the process o
     [projectserver]
     <Server IP Address> ansible_user=<username> ansible_ssh_private_key_file=<File Path>
     ```
-    Sample Sreenshot:
+    Sample Screenshot:
 
     <img src="screenshots/ansible_inventory_sample.png" align="left"/><br>
 
@@ -106,7 +106,7 @@ This repository contains Terraform and Ansible scripts to automate the process o
 10. Once the playbook executes successfully, you will be able to see the status and initalAdminPassword required for configuring Jenkins.
 
 
-11. You can access the URL by typing in http://<AWS_SERVER_PUBLIC_IP>:8080" in the web browser and paste in the initalAdminPassword for further configuration
+11. You can access the URL by typing in http://<AWS_SERVER_PUBLIC_IP>:8080" in the web browser and paste in the initalAdminPassword for further configuration.
     
     Note: Replace <AWS_SERVER_PUBLIC_IP> with your public IP of EC2 Instance
 
