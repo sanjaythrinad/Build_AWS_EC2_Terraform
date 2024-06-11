@@ -4,7 +4,7 @@
 This repository contains Terraform and Ansible scripts to automate the process of creating and configuring an AWS EC2 instance. Terraform is used for provisioning the infrastructure (EC2 Instance) in AWS, and Ansible is used for configuring the instance and perform installation of Python, Java and Jenkins.
 
 <h3>Prerequisites</h3>
-<b>Note:</b> Make sure your machine meet below prerequisites for executing these scripts.
+<b>Note:</b> Make sure your machine contains below prerequisites for executing these scripts.
 
 1. [Terraform](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
 2. [Ansible](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
@@ -75,7 +75,7 @@ This repository contains Terraform and Ansible scripts to automate the process o
     <img src="screenshots/aws_ec2_console.png" align="left"/><br>
 
 
-7. Copy the Public IP address of the AWS Instance and add it to Ansible Inventory File located under "Build_AWS_EC2_Terraform/Ansible" for execting the ansible playbook for Configuring the Instance.
+7. Copy the Public IP address of the AWS Instance and add it to Ansible Inventory File located under "Ansible" directory for executing the ansible playbook for Configuring the Instance.
 
 
 8. Along with IP address, update ansible user and private key path used for connecting to the Instance in the inventory file as mentioned below.
@@ -123,7 +123,7 @@ This repository contains Terraform and Ansible scripts to automate the process o
     ```
 
 
-2. Type in yes when prompted for confirmation. You can see the status once execution completed.
+2. Type in yes when prompted for confirmation and you can see the status once execution completed.
 
     <img src="screenshots/destroy_instance.png" align="left"/><br>
 
