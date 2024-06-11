@@ -33,7 +33,7 @@ This repository contains Terraform and Ansible scripts to automate the process o
     vi ~/.aws/credentials
     ```
 
-    <img src="screenshots/aws_secret_keys.png" align="left"/>
+    <img src="screenshots/aws_secret_keys.png" align="left"/><br>
 
 
 2. Export public key in Terraform variables which is used for deploying and authenticating with your AWS EC2 Instance.  
@@ -43,7 +43,7 @@ This repository contains Terraform and Ansible scripts to automate the process o
     echo $TF_VAR_public_key
     ```
 
-    <img src="screenshots/export_pub_key.png" align="left"/>
+    <img src="screenshots/export_pub_key.png" align="left"/><br>
 
 
 3. Switch into Terraform Directory present in the cloned repository
@@ -61,12 +61,12 @@ This repository contains Terraform and Ansible scripts to automate the process o
     terraform apply aws_ec2_deploy
     ```
 
-    <img src="screenshots/terraform_run_out.png" align="left"/>
+    <img src="screenshots/terraform_run_out.png" align="left"/><br>
 
 
 5. Once the Terraform script execution completes, you will be able to see below outputs provided by output.tf file and you can validate the new instance details in AWS Portal. 
 
-    <img src="screenshots/aws_ec2_console.png" align="left"/>
+    <img src="screenshots/aws_ec2_console.png" align="left"/><br>
 
 
 6. Copy the Public IP address of the AWS Instance and add it to Ansible Inventory File located under "Build_AWS_EC2_Terraform/Ansible" for execting the ansible playbook for Configuring the Instance.
@@ -84,7 +84,7 @@ This repository contains Terraform and Ansible scripts to automate the process o
     <Server IP Address> ansible_user=ubuntu ansible_ssh_private_key_file=<File Path>
     ```
 
-    <img src="screenshots/ansible_inventory_sample.png" align="left"/>
+    <img src="screenshots/ansible_inventory_sample.png" align="left"/><br>
 
 
 8. Execute the Ansible playbook to Install Python, Java 21 and Jenkins this EC2 Instance.
@@ -93,7 +93,7 @@ This repository contains Terraform and Ansible scripts to automate the process o
     ansible-playbook install_tools.yml -i inventory
     ```
 
-    <img src="screenshots/ansible_run_out.png" align="left"/>
+    <img src="screenshots/ansible_run_out.png" align="left"/><br>
 
 
 9. Once the playbook executes successfully, you will be to see the status and initalAdminPassword required for configuring Jenkins.
@@ -102,7 +102,7 @@ This repository contains Terraform and Ansible scripts to automate the process o
 10. You can access the URL by typing in http://<AWS_SERVER_PUBLIC_IP>:8080" in the web browser and paste in the initalAdminPassword for further configuration
     Note: Replace <AWS_SERVER_PUBLIC_IP> with your public IP of EC2 Instance
 
-    <img src="screenshots/jenkins_demo.png" align="left"/>
+    <img src="screenshots/jenkins_demo.png" align="left"/><br>
 
 <h3>Destroy the instance</h3>
 
@@ -116,7 +116,7 @@ This repository contains Terraform and Ansible scripts to automate the process o
 
 2. Type in yes when prompted for confirmation. You can see the status once execution completed.
 
-    <img src="screenshots/destroy_instance.png" align="left"/>
+    <img src="screenshots/destroy_instance.png" align="left"/><br>
 
 
 3. Validate the status of the Instance in the AWS Console to confirm Instance is no longer running.
