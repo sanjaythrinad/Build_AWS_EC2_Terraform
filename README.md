@@ -31,7 +31,7 @@ This repository contains Terraform and Ansible scripts to automate the process o
     vi ~/.aws/credentials
     ```
     <img src="screenshots/edit_aws_creds.png" align="left"/>
-    [Update AWS Credentials](screenshots/aws_secret_keys.png" align="left"/>
+    <img src="screenshots/aws_secret_keys.png" align="left"/>
 
 2. Export public key in Terraform variables which is used for deploying and authenticating with your AWS EC2 Instance.  
     You can validate if key has been exported by running below command
