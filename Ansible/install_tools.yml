@@ -2,15 +2,15 @@
 - name: "Install Jenkins, Java and Python on EC2 Instance"
   hosts: projectserver
   become: yes
+  vars:
+    ansible_ssh_common_args: "-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
   tasks: 
     - name: Add Jenkins apt repository key
-      apt_key:
-        url: https://pkg.jenkins.io/debian/jenkins.io.key
-        state: present
+      shell: wget -O /usr/share/keyrings/jenkins-keyring.asc https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
 
     - name: Add Jenkins apt repository on Server
       apt_repository:
-        repo: "deb http://pkg.jenkins.io/debian-stable binary/"
+        repo: "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] http://pkg.jenkins.io/debian-stable binary/"
         state: present
 
     - name: Update apt package index after adding Jenkins repository
@@ -24,7 +24,7 @@
 
     - name: Install Java on Server
       apt:
-        name: openjdk-11-jdk
+        name: openjdk-21-jdk
         state: present
 
     - name: Install Python on Server
@@ -37,3 +37,9 @@
         name: jenkins
         enabled: yes
         state: started
+    
+    - name: Get the InitialAdminPassword
+      command: cat /var/lib/jenkins/secrets/initialAdminPassword
+      register: output
+    
+    - debug: msg="{{ output.stdout_lines }}"

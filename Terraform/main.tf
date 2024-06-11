@@ -30,7 +30,7 @@ resource "aws_route_table" "route_table" {
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.main.id
+    gateway_id = aws_internet_gateway.subnet_ig.id
   }
 
   tags = {
@@ -51,6 +51,19 @@ resource "aws_security_group" "instance_sg" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  ingress {
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   tags = {
     Name = "SSH_Port"
   }
@@ -69,6 +82,7 @@ resource "aws_instance" "server_name" {
   key_name = "AWS_SSH_KEY"
   associate_public_ip_address = true
   tags = {
+    Name = var.server_name
     Environment = "Project1",
     Application = "Jenkins",
     Application = "Ansible",
