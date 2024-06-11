@@ -27,7 +27,13 @@ This repository contains Terraform and Ansible scripts to automate the process o
 
 <h3>Building and Configuring AWS EC2 Instance</h3>
 
-1. Update the AWS credentials in aws credentials file located under user home directory " ~/.aws/credentials" for creating authentication with your AWS Account. 
+1. Configure AWS credentials. Paste the required details when prompted for.
+
+    ```
+    aws configure
+    ```
+
+2. Update the credentials file with session token by editing the credentials file  " ~/.aws/credentials" for creating authentication with your AWS Account. 
     
     ```
     vi ~/.aws/credentials
@@ -36,24 +42,24 @@ This repository contains Terraform and Ansible scripts to automate the process o
     <img src="screenshots/aws_secret_keys.png" align="left"/><br>
 
 
-2. Export public key in Terraform variables which is used for deploying and authenticating with your AWS EC2 Instance.  
+3. Export public key in Terraform variables which is used for deploying and authenticating with your AWS EC2 Instance.  
+
+    <img src="screenshots/export_pub_key.png" align="left"/><br>
+
     You can validate if key has been exported by running below command
 
     ```
     echo $TF_VAR_public_key
     ```
 
-    <img src="screenshots/export_pub_key.png" align="left"/><br>
-
-
-3. Switch into Terraform Directory present in the cloned repository
+4. Switch into Terraform Directory present in the cloned repository
 
     ```
     cd Terraform/
     ```
 
 
-4. Run below commands to initialize the aws provider, plan and apply the plan
+5. Run below commands to initialize the aws provider, plan and apply the plan
     
     ```
     terraform init
@@ -64,15 +70,15 @@ This repository contains Terraform and Ansible scripts to automate the process o
     <img src="screenshots/terraform_run_out.png" align="left"/><br>
 
 
-5. Once the Terraform script execution completes, you will be able to see below outputs provided by output.tf file and you can validate the new instance details in AWS Portal. 
+6. Once the Terraform script execution completes, you will be able to see below outputs provided by output.tf file and you can validate the new instance details in AWS Portal. 
 
     <img src="screenshots/aws_ec2_console.png" align="left"/><br>
 
 
-6. Copy the Public IP address of the AWS Instance and add it to Ansible Inventory File located under "Build_AWS_EC2_Terraform/Ansible" for execting the ansible playbook for Configuring the Instance.
+7. Copy the Public IP address of the AWS Instance and add it to Ansible Inventory File located under "Build_AWS_EC2_Terraform/Ansible" for execting the ansible playbook for Configuring the Instance.
 
 
-7. Along with IP address, update ansible user private key path used for connecting to the Instance in the inventory file as mentioned below.
+8. Along with IP address, update ansible user private key path used for connecting to the Instance in the inventory file as mentioned below.
 
     ```
     cd ../Ansible
@@ -87,7 +93,7 @@ This repository contains Terraform and Ansible scripts to automate the process o
     <img src="screenshots/ansible_inventory_sample.png" align="left"/><br>
 
 
-8. Execute the Ansible playbook to Install Python, Java 21 and Jenkins this EC2 Instance.
+9. Execute the Ansible playbook to Install Python, Java 21 and Jenkins this EC2 Instance.
 
     ```
     ansible-playbook install_tools.yml -i inventory
@@ -96,13 +102,14 @@ This repository contains Terraform and Ansible scripts to automate the process o
     <img src="screenshots/ansible_run_out.png" align="left"/><br>
 
 
-9. Once the playbook executes successfully, you will be to see the status and initalAdminPassword required for configuring Jenkins.
+10. Once the playbook executes successfully, you will be to see the status and initalAdminPassword required for configuring Jenkins.
 
 
-10. You can access the URL by typing in http://<AWS_SERVER_PUBLIC_IP>:8080" in the web browser and paste in the initalAdminPassword for further configuration
+11. You can access the URL by typing in http://<AWS_SERVER_PUBLIC_IP>:8080" in the web browser and paste in the initalAdminPassword for further configuration
     Note: Replace <AWS_SERVER_PUBLIC_IP> with your public IP of EC2 Instance
 
     <img src="screenshots/jenkins_demo.png" align="left"/><br>
+
 
 <h3>Destroy the instance</h3>
 
@@ -120,3 +127,8 @@ This repository contains Terraform and Ansible scripts to automate the process o
 
 
 3. Validate the status of the Instance in the AWS Console to confirm Instance is no longer running.
+
+
+<h3>Conclusion</h3>
+
+This repository provides a robust and automated way to provision and configure AWS EC2 instances using Terraform and Ansible. By following the steps outlined in this README, you can quickly set up and manage your infrastructure with minimal manual intervention. If you have any questions or run into issues, feel free to open an issue or contribute to the project. Thank you for using our automation scripts!
