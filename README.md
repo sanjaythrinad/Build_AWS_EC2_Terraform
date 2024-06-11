@@ -6,10 +6,10 @@ This repository contains Terraform and Ansible scripts to automate the process o
 <h3>Prerequisites</h3>
 <b>Note:</b> Make sure your machine meet below prerequisites for executing these scripts.
 
-    1. [Terraform](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
-    2. [Ansible](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
-    3. [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
-    4. [Git](https://git-scm.com/downloads)
+1. [Terraform](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
+2. [Ansible](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
+3. [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+4. [Git](https://git-scm.com/downloads)
 
 <h3>Setup</h3>
 
@@ -30,15 +30,15 @@ This repository contains Terraform and Ansible scripts to automate the process o
     ```
     vi ~/.aws/credentials
     ```
-    [Edit AWS Credentials file](screenshots/edit_aws_creds.png)
-    [Update AWS Credentials](screenshots/aws_secret_keys.png)
+    <img src="screenshots/edit_aws_creds.png" align="left"/>
+    [Update AWS Credentials](screenshots/aws_secret_keys.png" align="left"/>
 
 2. Export public key in Terraform variables which is used for deploying and authenticating with your AWS EC2 Instance.  
     You can validate if key has been exported by running below command
     ```
     echo $TF_VAR_public_key
     ```
-    [AWS Public Key](screenshots/export_pub_key.png)
+    <img src="screenshots/export_pub_key.png" align="left"/>
 
 3. Switch into Terraform Directory present in the cloned repository
 
@@ -53,10 +53,10 @@ This repository contains Terraform and Ansible scripts to automate the process o
     terraform plan -out=aws_ec2_deploy
     terraform apply aws_ec2_deploy
     ```
-    [Terraform Output](screenshots/terraform_run_out.png)
+    <img src="screenshots/terraform_run_out.png" align="left"/>
 
 5. Once the Terraform script execution completes, you will be able to see below outputs provided by output.tf file and you can validate the new instance details in AWS Portal. 
-    [AWS EC2 Instance](screenshots/aws_ec2_console.png)
+    <img src="screenshots/aws_ec2_console.png" align="left"/>
 
 6. Copy the Public IP address of the AWS Instance and add it to Ansible Inventory File located under "Build_AWS_EC2_Terraform/Ansible" for execting the ansible playbook for Configuring the Instance.
 
@@ -70,20 +70,20 @@ This repository contains Terraform and Ansible scripts to automate the process o
     [projectserver]
     <Server IP Address> ansible_user=ubuntu ansible_ssh_private_key_file=<File Path>
     ```
-    [Inventory](screenshots/ansible_inventory_sample.png)
+    <img src="screenshots/ansible_inventory_sample.png" align="left"/>
 
 8. Execute the Ansible playbook to Install Python, Java 21 and Jenkins this EC2 Instance.
 
     ```
     ansible-playbook install_tools.yml -i inventory
     ```
-    [Ansible Play Output](screenshots/ansible_run_out.png)
+    <img src="screenshots/ansible_run_out.png" align="left"/>
 
 9. Once the playbook executes successfully, you will be to see the status and initalAdminPassword required for configuring Jenkins.
 
 10. You can access the URL by typing in http://<AWS_SERVER_PUBLIC_IP>:8080" in the web browser and paste in the initalAdminPassword for further configuration
     Note: Replace <AWS_SERVER_PUBLIC_IP> with your public IP of EC2 Instance
-    [Jenkins](screenshots/jenkins_demo.png)
+    <img src="screenshots/jenkins_demo.png" align="left"/>
 
 <h3>Destroy the instance</h3>
 
@@ -94,6 +94,6 @@ This repository contains Terraform and Ansible scripts to automate the process o
     ```
 
 2. Type in yes when prompted for confirmation. You can see the status once execution completed.
-    [Destroy](screenshots/destroy_instance.png)
+    <img src="screenshots/destroy_instance.png" align="left"/>
 
 3. Validate the status of the Instance in the AWS Console to confirm Instance is no longer running.
